@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter,  Route, Link } from 'react-router-dom';
 import './App.css';
+import routes from './routers/routers'
 
 class App extends Component {
+  showRoutes(routes) {
+    return routes.map((route, index) => {
+      return <Route path={route.path} exact={route.exact} component={route.component} />
+    })
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          {this.showRoutes(routes)}
+        </div>
+      </BrowserRouter>
+
     );
   }
 }
